@@ -7,8 +7,9 @@ Original Idea is the test paper from LLMWare team
 Decided to test it myself
 
 ### References
+
 - [https://docs.openvino.ai/2024/get-started/install-openvino.html?PACKAGE=OPENVINO_BASE&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP](https://docs.openvino.ai/2024/get-started/install-openvino.html?PACKAGE=OPENVINO_BASE&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP)
--[ https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?PACKAGE=OPENVINO_GENAI&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?PACKAGE=OPENVINO_GENAI&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP)
+- [ https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?PACKAGE=OPENVINO_GENAI&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP](https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?PACKAGE=OPENVINO_GENAI&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP)
 
 ### Used models
 > For INT4/Q4
