@@ -1,0 +1,121 @@
+FROM
+https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/download.html?PACKAGE=OPENVINO_GENAI&VERSION=v_2024_3_0&OP_SYSTEM=WINDOWS&DISTRIBUTION=PIP
+
+get the istructions
+# Step 1: Create virtual environment
+python -m venv openvino_env
+# Step 2: Activate virtual environment
+openvino_env\Scripts\activate
+# Step 3: Upgrade pip to latest version
+python -m pip install --upgrade pip
+# Step 4: Download and install the package
+pip install openvino-genai==2024.3.0
+
+
+From HuggingFace Qwen2-1.5b int8 format openvino
+https://huggingface.co/circulus/on-qwen2-1.5b-it-int8-ov/tree/main
+
+maybe torch before
+https://files.pythonhosted.org/packages/5a/6a/775b93d6888c31f1f1fc457e4f5cc89f0984412d5dcdef792b8f2aa6e812/torch-2.4.1-cp311-cp311-win_amd64.whl
+pip install optimum-intel[openvino]
+
+
+for comparisons
+pip install tiktoken
+install llama-cpp-python==0.2.90
+
+
+
+QWEN2-1.5B-int8 OpenVino
+Required RAM = 4 Gb ?
+```
+pipe = pipeline("text-generation", model=model, tokenizer=tokenizer,
+                                    max_length = 1024, 
+                                    do_sample=True,
+                                    temperature=0.18,
+                                    top_p=0.8,
+                                    repetition_penalty = 1.178,
+                                    top_k = 4,
+                                    penalty_alpha = 0.6)
+```
+USER> You are an AI assistant designed to provide detailed, step-by-step responses. Your outputs should follow this structure:
+1. Begin with a <thinking> section.
+2. Inside the thinking section:
+   a. Briefly analyze the question and outline your approach.
+   b. Present a clear plan of steps to solve the problem.
+   c. Use a "Chain of Thought" reasoning process if necessary, breaking down your thought process into numbered steps.
+3. Include a <reflection> section for each idea where you:
+   a. Review your reasoning.
+   b. Check for potential errors or oversights.
+   c. Confirm or adjust your conclusion if necessary.
+4. Be sure to close all reflection sections.
+5. Close the thinking section with </thinking>.
+6. Provide your final answer in an <output> section.
+Always use these tags in your responses. Be thorough in your explanations, showing each step of your reasoning process. Aim to be precise and logical in your approach, and don't hesitate to break down complex problems into simpler components. Your tone should be analytical and slightly formal, focusing on clear communication of your thought process.
+Remember: Both <thinking> and <reflection> MUST be tags and must be closed at their conclusion
+Make sure all <tags> are on separate lines with no other text. Do not include other text on a line containing a tag.
+
+user question: explain why it is crucial for teachers to learn how to use generative AI for their job and for the future of education.
+Include relevant learning path for teachers and educators.
+
+Inference tine: 0:00:46.905297
+---
+ASSISTANT> <thinking>
+To understand why it's crucial for teachers to learn how to use generative AI (AI) for their jobs and the future of education, we need to consider several key points:
+
+  * Generative AI can automate repetitive tasks that take up valuable time and attention from teachers, allowing them to focus more on teaching students rather than administrative work.
+  * It can also help personalize student experiences by providing tailored educational content based on individual needs and preferences.
+  * By using AI tools, teachers can save time and energy while still maintaining high-quality instruction.
+  * The integration of AI technology can enhance accessibility for learners who may have difficulty accessing traditional forms of education due to physical limitations or lack of resources.
+  * Finally, as society becomes increasingly digitalized, understanding how to integrate AI into our daily lives will become essential for success in both personal and professional settings.
+
+Learning paths for teachers could involve courses specifically focused on integrating AI technologies into lesson planning and delivery, workshops on best practices for utilizing AI in classrooms, and ongoing training sessions to keep abreast of new developments and updates in AI-based pedagogy.
+
+</thinking>
+
+<reflection>
+While there isn't one specific learning path outlined above, I believe that incorporating AI into teacher training would likely cover topics such as data analysis, machine learning algorithms, natural language processing, and ethical considerations when implementing AI in the classroom. Additionally, workshops and seminars dedicated to AI in education could offer practical examples and case studies of successful implementation across various subject areas.
+
+Overall, the importance of teachers being able to utilize AI effectively lies in its ability to streamline processes, improve engagement, and support diverse learner populations within the context of modern education systems.
+
+</reflection>
+
+<output>
+The integration of generative AI into the curriculum and instructional methods has significant implications for both the efficiency and effectiveness of education. Teachers play a critical role in shaping the way information is presented and processed through the lens of AI, ensuring that students receive personalized and engaging lessons. To fully leverage the benefits of AI in education, teachers require specialized training and continuous learning opportunities to stay informed about emerging trends and advancements in AI-powered teaching techniques. This includes access to online platforms offering comprehensive courses, webinars, and workshops aimed at equipping educators with the skills they need to incorporate AI into their practice. Ultimately, embracing AI in the classroom requires a holistic approach that considers the unique challenges faced by different types of learners and ensures that every child receives the highest quality education possible.
+---
+Prompt Tokens: 344
+Output Tokens: 523
+TOTAL Tokens: 867
+---
+>>>speed: 18.484  t/s
+
+
+ASSISTANT> <thinking>
+To understand why it's essential for teachers to learn about generative AI (AI) and its role in education, we need to consider several key points:
+
+  * Generative AI refers to artificial intelligence that can generate new data, content, or tasks based on existing inputs. This technology has significant implications for many aspects of modern life, including education.
+  * In particular, generative AI could revolutionize teaching by automating repetitive tasks such as grading papers, creating lesson plans, and analyzing student performance. It also has the potential to personalize educational experiences for individual students through adaptive learning algorithms.
+  * Teachers who want to stay competitive in today’s rapidly changing landscape will need to develop skills in using generative AI tools effectively within their classrooms. They may choose to take online courses, attend workshops, or collaborate with colleagues to gain expertise in this area.
+
+Learning paths for teachers might involve exploring specific platforms like Google Classroom, which offers built-in features for generating assignments and assessments; Udacity's course on Machine Learning for Educators, which covers foundational concepts and practical applications; or Coursera's Introduction to Artificial Intelligence course, which provides a comprehensive overview of AI principles and techniques.
+
+By investing time and effort in learning about generative AI, teachers can equip themselves with valuable skills that will help them adapt to the evolving needs of their profession while providing more effective instruction to their students. The ability to leverage cutting-edge technologies in the classroom opens up opportunities for innovation and personalization, ultimately benefiting both learners and educators alike.
+</thinking>
+
+<reflection>
+In my analysis, I considered the importance of generative AI in transforming traditional teaching methods and enhancing personalized learning experiences. By offering insights from various sources, I aimed to demonstrate the relevance of learning about generative AI for teachers seeking to keep pace with technological advancements in education. Additionally, I highlighted the benefits of acquiring knowledge in areas like machine learning and algorithmic design, emphasizing the necessity of continuous professional development for educators to remain competitive in their field.
+</reflection>
+
+Finally, I provided examples of learning pathways suitable for teachers interested in developing proficiency in generative AI, demonstrating the practical application of these ideas in real-world contexts. These resources offer concrete ways for individuals to engage with generative AI and explore its impact on education, thereby underscoring the critical nature of teacher training in this emerging domain.
+</output>
+---
+Prompt Tokens: 344
+Output Tokens: 497
+TOTAL Tokens: 841
+---
+>>>speed: 18.397  t/s
+
+
+
+
+
