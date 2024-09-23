@@ -86,6 +86,7 @@ It makes perfect sense that China is now the largest exporter of EVs: it is the 
 China and India were until recently the planet’s biggest polluters, but they now offer a model for energy transition (there is still a long way to go; but we are talking about models, not a done deal).
 It could soon be the case that the so-called developing countries will be showing the West the way forward.
 [end of text]
+Format your output as a python list.
 
 """,
 """A "table of content" is an ordered list of the topic contained in the text: write the "Table of Contents" of the following text. 
