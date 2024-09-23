@@ -218,7 +218,7 @@ user question: explain why it is crucial for teachers to learn how to use genera
 ]
 
 encoding = tiktoken.get_encoding("r50k_base") #context_count = len(encoding.encode(yourtext))
-modelname = 'gemma-2-2b-it-INT4_Openvino'
+modelname = 'on-gemma2-2b-it-ov-awq-int4'
 def countTokens(text):
     encoding = tiktoken.get_encoding("r50k_base") #context_count = len(encoding.encode(yourtext))
     numoftokens = len(encoding.encode(text))
@@ -258,6 +258,27 @@ def printStats(delta,question,response,nlptask,rating):
     print(f'>>>Inference speed: {speed:.3f}  t/s')
     print(f'>>>Generation speed: {genspeed:.3f}  t/s\n\n')
     print('---')
+
+def logStats(delta,question,response,nlptask,rating,logfilename):
+    totalseconds = delta.total_seconds()
+    prompttokens = countTokens(question)
+    assistanttokens = countTokens(response)
+    totaltokens = prompttokens + assistanttokens
+    speed = totaltokens/totalseconds
+    genspeed = assistanttokens/totalseconds    
+    stats = f'''---
+Prompt Tokens: {prompttokens}
+Output Tokens: {assistanttokens}
+TOTAL Tokens: {totaltokens}
+>>>⏱️Inference time: {delta}
+>>>🧮Inference speed: {speed:.3f}  t/s
+>>>🏃‍♂️Generation speed: {genspeed:.3f}  t/s
+📝Logfile: {logfilename}
+✅NLP TAKS>>> {nlptask}
+>>>💚User rating: {rating}
+
+'''
+    return stats
 
 # create THE LOG FILE 
 logfile = f'logs/GEMMA2-2B_OpenVINO_{genRANstring(5)}_log.txt'
@@ -321,11 +342,16 @@ print('')
 print("\033[91;1m")
 rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
 print("\033[92;1m")
-printStats(delta,question,response,'INTRODUCTIONS AND GREETINGS',rating)
+stats = logStats(delta,question,response,'INTRODUCTIONS AND GREETINGS',rating,logfilename)
+print(stats)
 print("\033[0m")  #reset all
 history = []
 print("\033[92;1m")
 print(f'📝Logfile: {logfilename}')
+writehistory(logfilename,f'''👨‍💻: {question}
+💻 > {response}
+{stats}
+''')
 
 ############################# AUTOMATIC PROMPTING EVALUATION  11 TURNS #################################
 for i in range(0,len(prmpt_coll)):
@@ -365,11 +391,16 @@ for i in range(0,len(prmpt_coll)):
     print("\033[91;1m")
     rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
     print("\033[92;1m")
-    printStats(delta,prmpt_coll[i],response,prmpt_tasks[i],rating)
-    print("\033[0m")  #reset all
+    stats = logStats(delta,prmpt_coll[i],response,prmpt_tasks[i],rating,logfilename)
+    print(stats)
     history = []
     print("\033[92;1m")
-    print(f'📝Logfile: {logfilename}')  
+    print(stats)
+    writehistory(logfilename,f'''👨‍💻: {question}
+💻 > {response}
+{stats}
+''') 
+    print("\033[0m")  #reset all
 
 
 
