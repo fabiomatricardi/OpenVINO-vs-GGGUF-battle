@@ -18,7 +18,7 @@ prmpt_tasks = ["introduction",
                "explain in three paragrapghs",
                "summarize",
                "Summarize in two sentences",
-               "Write in a list the three main key points",
+               "Write in a list the three main key points -  format output",
                "Table of Contents",
                "RAG",
                "Truthful RAG",
@@ -240,10 +240,12 @@ def genRANstring(n):
                                 string.digits, k=N))
     return res
 
-def printStats(delta,question,response):
+def printStats(delta,question,response,nlptask,rating):
     totalseconds = delta.total_seconds()
     print('---')
     print(f'Inference time: {delta}')
+    print(f'NLP TASK >>> {nlptask}')
+    print(f'USER RATING >>> {rating}')
     prompttokens = countTokens(question)
     assistanttokens = countTokens(response)
     totaltokens = prompttokens + assistanttokens
@@ -315,7 +317,11 @@ for new_text in streamer:
     partial_text += new_text
 response = partial_text
 delta = datetime.datetime.now() - start
-printStats(delta,question,response)
+print('')
+print("\033[91;1m")
+rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
+print("\033[92;1m")
+printStats(delta,question,response,'INTRODUCTIONS AND GREETINGS',rating)
 print("\033[0m")  #reset all
 history = []
 print("\033[92;1m")
@@ -332,10 +338,10 @@ for i in range(0,len(prmpt_coll)):
     new_message = {"role": "assistant", "content": ""}
     print("\033[92;1m")
     streamer = TextIteratorStreamer(tokenizer, timeout=60.0, skip_prompt=True, skip_special_tokens=True)
-    model_inputs = tokenizer.apply_chat_template(messages,
-                                                        add_generation_prompt=True,
-                                                        tokenize=True,
-                                                        return_tensors="pt")
+    model_inputs = tokenizer.apply_chat_template(test,
+                                                add_generation_prompt=True,
+                                                tokenize=True,
+                                                return_tensors="pt")
     generate_kwargs = dict(input_ids=model_inputs,
                             max_new_tokens=1500,
                             temperature=0.1,
@@ -355,7 +361,11 @@ for i in range(0,len(prmpt_coll)):
     new_message["content"] = response
     test.append(new_message)
     delta = datetime.datetime.now() - start
-    printStats(delta,prmpt_coll[i],response)
+    print('')
+    print("\033[91;1m")
+    rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
+    print("\033[92;1m")
+    printStats(delta,prmpt_coll[i],response,prmpt_tasks[i],rating)
     print("\033[0m")  #reset all
     history = []
     print("\033[92;1m")

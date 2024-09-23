@@ -1,0 +1,6 @@
+2024-09-23 17:21:18.855589
+
+Your own LocalGPT with 💻 gemma-2-2b-it-INT4_Openvino
+---
+🧠🫡: You are a helpful assistant.
+💻: How can I assist you today in writing?

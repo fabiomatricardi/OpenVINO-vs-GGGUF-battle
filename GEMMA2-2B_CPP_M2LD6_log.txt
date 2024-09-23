@@ -1,48 +1,89 @@
-# Chat with an intelligent assistant in your terminal  
-# MODEL: https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/tree/main
-# models/gemma-2-2b-it-Q4_K_M.gguf
-import sys
-from time import sleep
-import warnings
-warnings.filterwarnings(action='ignore')
-import datetime
-import random
-import string
-import tiktoken
-import argparse
+2024-09-23 16:40:10.049575
 
-#Add GPU argument in the parser
-parser = argparse.ArgumentParser()
-parser.add_argument("-g", "--gpu", action="store_true")
+Your own LocalGPT with 💻 gemma-2-2b-it-Q4_K_M.gguf
+---
+🧠🫡: You are a helpful assistant.
+💻: How can I assist you today in writing?
+✅NLP TAKS>>> INTRODUCTIONS AND GREETINGS
+👨‍💻: Explain the plot of Cinderella in a sentence.
+💻 > A kind and resilient young woman named Cinderella escapes an abusive life with her stepfamily to attend a grand ball, hoping to escape their cruelty by finding true love under the magic glow of the midnight hour. 
 
-args = parser.parse_args()
-GPU = args.gpu
-if GPU:
-    ngpu_layers = 28
-    print(f'Selected GPU: offloading {ngpu_layers} layers...')
-else:
-     ngpu_layers = 0   
-     print('Loading Model on CPU only......')
 
-prmpt_tasks = ["introduction",
-               "explain in one sentence",
-               "explain in three paragrapghs",
-               "summarize",
-               "Summarize in two sentences",
-               "Write in a list the three main key points -  format output",
-               "Table of Contents",
-               "RAG",
-               "Truthful RAG",
-               "write content from a reference",
-               "extract 5 topics",
-               "Creativity: 1000 words SF story",
-               "Reflection prompt"
-               ]
-prmpt_coll = [
-"""Hi there I am Fabio, a Medium writer. who are you?""",
-"""explain in one sentence what is science.\n""",
-"""explain in three paragraphs what is artificial intelligence.\n""",
-"""summarize the following text:
+Let me know if you'd like a more detailed breakdown! 😊 
+
+---
+Prompt Tokens: 10
+Output Tokens: 59
+TOTAL Tokens: 69
+>>>⏱️Inference time: 0:00:10.588549
+>>>🧮Inference speed: 6.516  t/s
+>>>🏃‍♂️Generation speed: 5.572  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 4
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> introduction
+👨‍💻: Hi there I am Fabio, a Medium writer. who are you?
+💻 > Hello Fabio! It's nice to meet another writer 😊  
+
+I am Gemma, an AI assistant created by the brilliant minds at Google DeepMind. 🧠 While I can't write stories like yourself, I do love learning about different creative approaches and exploring new topics with humans like you!  
+
+
+What are some of the interesting things you're writing about on Medium? ✨ 
+
+--- 
+Prompt Tokens: 15
+Output Tokens: 86
+TOTAL Tokens: 101
+>>>⏱️Inference time: 0:00:13.497615
+>>>🧮Inference speed: 7.483  t/s
+>>>🏃‍♂️Generation speed: 6.371  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> explain in one sentence
+👨‍💻: explain in one sentence what is science.
+
+💻 > Science is the systematic and empirical study of the natural world through observation, experimentation, and logical reasoning to understand how things work. 
+
+--- 
+Prompt Tokens: 10
+Output Tokens: 27
+TOTAL Tokens: 37
+>>>⏱️Inference time: 0:00:04.753375
+>>>🧮Inference speed: 7.784  t/s
+>>>🏃‍♂️Generation speed: 5.680  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> explain in three paragrapghs
+👨‍💻: explain in three paragraphs what is artificial intelligence.
+
+💻 > Artificial Intelligence, or AI, encompasses the development of computer systems capable of performing tasks that typically require human intelligence, such as learning, problem-solving, decision making, and understanding natural language. It's about building machines that can mimic cognitive processes like those we use to perceive our environment, make decisions, adapt to changing circumstances, and learn from experience. The field draws on various disciplines including computer science, statistics, psychology, linguistics, and mathematics to achieve its goal.
+
+There are several types of AI techniques, with the most prominent being Machine Learning (ML). ML algorithms allow computers to learn from data without explicit programming. They analyze vast datasets and identify patterns or make predictions based on those learnings, improving their accuracy over time through iterative training. Another key approach is Deep Learning, which relies on artificial neural networks inspired by biological brains.  These sophisticated models excel at tasks like image recognition, natural language processing, and speech analysis.
+
+AI's potential spans a wide range of applications, revolutionizing industries from healthcare to finance. In medicine, AI assists in diagnosis and treatment planning, while in finance it aids with fraud detection and risk management. For communication and entertainment, chatbots provide customer support and personal assistants offer scheduling and information access. As research progresses and technology advances, the future promises even more impactful applications for AI across society. 
+
+--- 
+Prompt Tokens: 11
+Output Tokens: 275
+TOTAL Tokens: 286
+>>>⏱️Inference time: 0:00:43.939358
+>>>🧮Inference speed: 6.509  t/s
+>>>🏃‍♂️Generation speed: 6.259  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> summarize
+👨‍💻: summarize the following text:
 
 [text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
@@ -60,8 +101,32 @@ China and India were until recently the planet’s biggest polluters, but they n
 It could soon be the case that the so-called developing countries will be showing the West the way forward.
 [end of text]
 
-""",
-"""Summarize in two sentences the following text
+
+💻 > This article explores how China's authoritarian political system and its dedication to long-term planning have allowed it to achieve remarkable results in decarbonization compared to Western democracies. 
+
+**Key Points:**
+
+* **China is a net carbon emitter with plans to transition towards renewable energy.** While historically prioritizing fossil fuel reliance, they are now embracing solar panels, batteries and wind power at unprecedented levels due to cost-effectiveness.
+* **Peak emissions may have occurred in 2023**, fueled by the rapid expansion of renewables, resulting in lower greenhouse gas output. 
+* **China's model offers a stark contrast to the West's approach.**  While Western nations debate and criticize the transition towards EVs, China has seamlessly integrated them into its economy. This is driven by cost advantages that lead to an accelerated adoption.
+* **India and China are now potential leaders in sustainable energy**, challenging the West’s dominance in this domain. 
+
+The author argues that these achievements prove a point: even though China operates under a closed system, it can achieve impressive progress on environmental issues due to its strategic long-term planning and cost advantages within a developing economy model.  
+
+--- 
+Prompt Tokens: 943
+Output Tokens: 247
+TOTAL Tokens: 1190
+>>>⏱️Inference time: 0:01:58.290455
+>>>🧮Inference speed: 10.060  t/s
+>>>🏃‍♂️Generation speed: 2.088  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Summarize in two sentences
+👨‍💻: Summarize in two sentences the following text
 
 [text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
@@ -79,8 +144,23 @@ China and India were until recently the planet’s biggest polluters, but they n
 It could soon be the case that the so-called developing countries will be showing the West the way forward.
 [end of text]
 
-""",
-"""Write in a list the three main key points of the following text:
+
+💻 > This article argues that China's authoritarian system and its focus on long-term planning have enabled it to rapidly decarbonize and reach peak emissions in 2023, potentially setting a new path for energy transition compared to Western nations. The author believes that China is using this strategy by investing heavily in renewable energy technologies like solar panels and wind turbines while minimizing reliance on fossil fuels due to cost advantages, thereby showcasing the potential of developing countries in driving global climate change action.  
+
+--- 
+Prompt Tokens: 945
+Output Tokens: 95
+TOTAL Tokens: 1040
+>>>⏱️Inference time: 0:01:32.031447
+>>>🧮Inference speed: 11.300  t/s
+>>>🏃‍♂️Generation speed: 1.032  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Write in a list the three main key points
+👨‍💻: Write in a list the three main key points of the following text:
 
 [text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
@@ -99,8 +179,24 @@ It could soon be the case that the so-called developing countries will be showin
 [end of text]
 Format your output as a python list.
 
-""",
-"""A "table of content" is an ordered list of the topic contained in the text: write the "Table of Contents" of the following text. 
+
+💻 > ```python
+["China's system prioritizes long-term planning and has achieved unprecedented carbon emissions peaking in 2023, likely due to rapid deployment of renewable energy",  "This model contrasts with Western democracies that prioritize short-term gains over sustainable development", "While the West struggles with affordability and efficiency of EV technologies, China is leading by prioritizing cheaper solar panels, wind turbines and battery storage as their core solutions for decarbonization"],
+``` 
+--- 
+Prompt Tokens: 959
+Output Tokens: 95
+TOTAL Tokens: 1054
+>>>⏱️Inference time: 0:01:30.472623
+>>>🧮Inference speed: 11.650  t/s
+>>>🏃‍♂️Generation speed: 1.050  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 3 only 2 items but in a python list
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Table of Contents
+👨‍💻: A "table of content" is an ordered list of the topic contained in the text: write the "Table of Contents" of the following text. 
 
 [text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
@@ -118,8 +214,45 @@ China and India were until recently the planet’s biggest polluters, but they n
 It could soon be the case that the so-called developing countries will be showing the West the way forward.
 [end of text]
 
- """,
-"""Reply to the question only using the provided context. If the answer is not contained in the text say "unanswerable".
+ 
+💻 > **Table of Contents**
+
+1. **Introduction: A Critique of China's Political System**
+    *  Understanding China’s political system as non-democratic and a dictatorship 
+    
+2. **China’s Economic Transformation:** Long-term Planning, Climate Change Leadership, and the Renewable Energy Boom
+    *  The "advantages" of long-term planning for China in contrast to democratic systems
+    *  China's remarkable achievement: peaking carbon emissions by 2023 and potentially reaching Net Zero goals early. 
+
+3. **India’s Argument: Development vs. Climate Responsibility**
+     *   Examining the economic arguments used by countries like India, referencing past emissions for justification of continued fossil fuel dependence.
+
+4. **The Future is Now? The Chinese Approach to Decarbonization** 
+    *  China's commitment to solar and wind technology due to their lower costs compared to other options
+    *  China’s strategic deployment of renewable energy sources like Solar, Wind power, and Hydroelectricity for a cleaner future
+
+5. **The Rise of China as a Leader in the Global Energy Transition** 
+   *   Why China is becoming the leader in electric vehicles due to their cost advantage compared to other countries
+
+
+6.  **Conclusion: A New Model of Progress?**
+    * The possibility of developing nations like China and India taking on leadership roles for global sustainable development.
+
+
+--- 
+Prompt Tokens: 968
+Output Tokens: 325
+TOTAL Tokens: 1293
+>>>⏱️Inference time: 0:02:11.214489
+>>>🧮Inference speed: 9.854  t/s
+>>>🏃‍♂️Generation speed: 2.477  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> RAG
+👨‍💻: Reply to the question only using the provided context. If the answer is not contained in the text say "unanswerable".
 
 question: what Chine achieved with it's long-term planning?
 
@@ -140,8 +273,23 @@ It could soon be the case that the so-called developing countries will be showin
 [end of context]
 
 answer:
- """,
-"""Reply to the question only using the provided context. If the answer is not contained in the text say "unanswerable".
+ 
+💻 > China achieved its long-term planning by committing to renewable energy technologies like solar panels and wind turbines at a faster pace than initially planned because they are cheaper, allowing it to achieve peak carbon dioxide emissions in 2023.  The text also mentions China is committed to lower cost and efficient energy options compared to the West's efforts on EVs and other related technologies. 
+
+--- 
+Prompt Tokens: 982
+Output Tokens: 73
+TOTAL Tokens: 1055
+>>>⏱️Inference time: 0:01:31.378339
+>>>🧮Inference speed: 11.545  t/s
+>>>🏃‍♂️Generation speed: 0.799  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Truthful RAG
+👨‍💻: Reply to the question only using the provided context. If the answer is not contained in the text say "unanswerable".
 
 question: who is Anne Frank?
 
@@ -163,28 +311,23 @@ It could soon be the case that the so-called developing countries will be showin
 Remember: if you cannot answer based on the provided context, say "unanswerable"
 
 answer:
- """, 
+ 
+💻 > Unanswerable 
 
-"""Using the following text as a reference, write a 5-paragraphs essay about "the benefits of China economic model".
+--- 
+Prompt Tokens: 994
+Output Tokens: 5
+TOTAL Tokens: 999
+>>>⏱️Inference time: 0:01:27.660821
+>>>🧮Inference speed: 11.396  t/s
+>>>🏃‍♂️Generation speed: 0.057  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
 
-[text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
-In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
-That said, among the “advantages” of the Chinese system is that because the leadership never has to put its legitimacy to the vote, it can carry out very long-term planning in the knowledge that another administration isn’t going to come along and change those plans.
-Obviously, I put “advantages” in quotation marks because, as democrats, most of my readers would never be willing to sacrifice their freedom for greater planning, but there is no doubt that China, since its system works like this and its population seems to have accepted it for generations, intends to turn this into a comparative advantage, the term used in business when analyzing companies.
-It turns out that China’s capacity for long-term planning is achieving something unheard of in the West: it seems the country reached peak carbon dioxide and greenhouse gas emissions in 2023, and that the figures for 2024, driven above all by a determined increase in the installation of renewable energies, are not only lower, but apparently going to mark a turning point.
-If you don’t believe what you’re reading, rub your eyes: we’re talking about China, the country with the highest emissions in the world, which claimed that its arrival at Net Zero would be delayed by a few decades because the country had the right to consolidate its economy by burning the fossil fuels it deemed necessary, in the same way that the West had done for the last century or more.
-India makes the same argument: the economies that we consider developed today have spent decades emitting carbon dioxide like there were no tomorrow, therefore, they should have the right to do so at least until their economies have reached a similar level of development.
-Given that we are talking about the two most populous economies in the world, these arguments are problematic, given that we all live on the same planet, and it remains to be seen whether our species can continue to inhabit it if emissions continue to grow. No joke. And if you are somebody who denies climate change, stop reading this article now and please don’t expose yourself to ridicule in the comments section, instead do yourself the favor of reading a little before coming back here.
-What is happening in China? Well, in addition to having established technological leadership in solar panels and batteries, the two most strategic technologies for decarbonization and the energy transition, it has decided to fully commit to them and deploy them at a much higher speed than initially planned. Why? For the simplest reason of all: they are much cheaper.
-While we in the West still complain that EVs are more expensive, or argue if they really do reduce emissions, or if batteries can be recycled, in China they are no longer the future, but the present, while solar panels and wind turbines are put everywhere they can reasonably be placed, with batteries installed to cover intermittency.
-The result is that the world’s biggest polluter may have peaked in emissions in 2023, and already be in the downward phase. The expansion of solar and wind generation meant that by March 2024 these sources covered 90% of the growth in electricity demand. Together with a very strong commitment to hydroelectric power, with some of the largest dams in the world, we are facing a commitment that will not only ensure all the country’s energy needs, but do so at significantly lower costs.
-It makes perfect sense that China is now the largest exporter of EVs: it is the logical evolution of a long-term planned economy based on an understanding of the cost advantages that technology provides. Sure, it is hedging its bets by planning more coal or nuclear power plants, but they are no longer the first option.
-China and India were until recently the planet’s biggest polluters, but they now offer a model for energy transition (there is still a long way to go; but we are talking about models, not a done deal).
-It could soon be the case that the so-called developing countries will be showing the West the way forward.
-[end of text]
 
-""",
-"""write the five most important topics from the following text:
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> write content from a reference
+👨‍💻: Using the following text as a reference, write a 5-paragraphs essay about "the benefits of China economic model".
 
 [text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
@@ -202,11 +345,141 @@ China and India were until recently the planet’s biggest polluters, but they n
 It could soon be the case that the so-called developing countries will be showing the West the way forward.
 [end of text]
 
-""",
-"""Science Fiction: The Last Transmission - Write a story that takes place entirely within a spaceship's cockpit as the sole surviving crew member attempts to send a final message back to Earth before the ship's power runs out. The story should explore themes of isolation, sacrifice, and the importance of human connection in the face of adversity. 800-1000 words.
 
-""",
-"""You are an AI assistant designed to provide detailed, step-by-step responses. Your outputs should follow this structure:
+💻 > ## A Unique Advantage: China's Economic Model and Its Green Transformation
+
+While many in the West criticize China’s one-party system as a dictatorship, its economic model presents some undeniable advantages, particularly when considering long-term planning and achieving ambitious sustainability goals.  By allowing for sustained leadership without direct democratic elections, the Chinese Communist Party has fostered an environment of strategic thinking that allows them to prioritize long-term projects with stability in place for decades. This approach enables a focus on solutions like renewable energy production and electric vehicle development that are difficult to achieve within the constraints of Western democracies' electoral processes.
+
+One clear advantage is China's success in achieving peak carbon dioxide emissions in 2023.  Driven by aggressive investment in solar panels, batteries, wind turbines, and hydroelectric power, China’s transition has been remarkably rapid and cost-effective. The nation has moved away from a dependence on fossil fuels like coal, placing an emphasis on renewable energy sources that have proven to be both technologically advanced and economically viable at scale. This commitment to sustainability is not mere rhetoric; it's embedded in the country's planning model which allows for consistent investment in technologies with clear long-term benefits.
+
+This dedication to future-proof strategies has resulted in significant advantages for China’s energy landscape. The rapid deployment of solar and wind power, combined with a robust hydroelectric infrastructure, guarantees affordable and reliable electricity generation across the nation. These developments have not only mitigated their environmental impact but also allowed them to become global leaders in renewable technology exports. The result is a shift in economic focus that favors cost-effective solutions for clean energy while simultaneously boosting technological advancements, making China an innovative powerhouse in green energy development.
+
+China’s unique model has demonstrably changed the trajectory of its national development. This nation once prioritized fossil fuel extraction and consumption; now they are at the forefront of renewable technology adoption and a key driver behind global efforts to address climate change. The shift away from dependence on traditional resources towards sustainable alternatives is not only shaping China's future but also setting an example for other developing nations grappling with similar challenges.  
+
+In essence, China’s economic model allows for long-term strategic planning that prioritizes sustainability over short-sighted political gains. This commitment to clean energy technology and renewable resource deployment has placed the nation at the forefront of a global climate change solution, demonstrating that innovative thinking and focused investment in sustainable technologies can lead to remarkable breakthroughs that benefit both nations and the planet as a whole. While challenges remain, China’s example serves as a blueprint for how countries with strong central leadership can navigate complex issues and achieve ambitious sustainability goals. 
+
+--- 
+Prompt Tokens: 960
+Output Tokens: 547
+TOTAL Tokens: 1507
+>>>⏱️Inference time: 0:02:54.950179
+>>>🧮Inference speed: 8.614  t/s
+>>>🏃‍♂️Generation speed: 3.127  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> extract 5 topics
+👨‍💻: write the five most important topics from the following text:
+
+[text]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
+In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
+That said, among the “advantages” of the Chinese system is that because the leadership never has to put its legitimacy to the vote, it can carry out very long-term planning in the knowledge that another administration isn’t going to come along and change those plans.
+Obviously, I put “advantages” in quotation marks because, as democrats, most of my readers would never be willing to sacrifice their freedom for greater planning, but there is no doubt that China, since its system works like this and its population seems to have accepted it for generations, intends to turn this into a comparative advantage, the term used in business when analyzing companies.
+It turns out that China’s capacity for long-term planning is achieving something unheard of in the West: it seems the country reached peak carbon dioxide and greenhouse gas emissions in 2023, and that the figures for 2024, driven above all by a determined increase in the installation of renewable energies, are not only lower, but apparently going to mark a turning point.
+If you don’t believe what you’re reading, rub your eyes: we’re talking about China, the country with the highest emissions in the world, which claimed that its arrival at Net Zero would be delayed by a few decades because the country had the right to consolidate its economy by burning the fossil fuels it deemed necessary, in the same way that the West had done for the last century or more.
+India makes the same argument: the economies that we consider developed today have spent decades emitting carbon dioxide like there were no tomorrow, therefore, they should have the right to do so at least until their economies have reached a similar level of development.
+Given that we are talking about the two most populous economies in the world, these arguments are problematic, given that we all live on the same planet, and it remains to be seen whether our species can continue to inhabit it if emissions continue to grow. No joke. And if you are somebody who denies climate change, stop reading this article now and please don’t expose yourself to ridicule in the comments section, instead do yourself the favor of reading a little before coming back here.
+What is happening in China? Well, in addition to having established technological leadership in solar panels and batteries, the two most strategic technologies for decarbonization and the energy transition, it has decided to fully commit to them and deploy them at a much higher speed than initially planned. Why? For the simplest reason of all: they are much cheaper.
+While we in the West still complain that EVs are more expensive, or argue if they really do reduce emissions, or if batteries can be recycled, in China they are no longer the future, but the present, while solar panels and wind turbines are put everywhere they can reasonably be placed, with batteries installed to cover intermittency.
+The result is that the world’s biggest polluter may have peaked in emissions in 2023, and already be in the downward phase. The expansion of solar and wind generation meant that by March 2024 these sources covered 90% of the growth in electricity demand. Together with a very strong commitment to hydroelectric power, with some of the largest dams in the world, we are facing a commitment that will not only ensure all the country’s energy needs, but do so at significantly lower costs.
+It makes perfect sense that China is now the largest exporter of EVs: it is the logical evolution of a long-term planned economy based on an understanding of the cost advantages that technology provides. Sure, it is hedging its bets by planning more coal or nuclear power plants, but they are no longer the first option.
+China and India were until recently the planet’s biggest polluters, but they now offer a model for energy transition (there is still a long way to go; but we are talking about models, not a done deal).
+It could soon be the case that the so-called developing countries will be showing the West the way forward.
+[end of text]
+
+
+💻 > Here are five key topics from the provided text:
+
+1. **China's Political System and Long-term Planning:** The text argues that China's Communist Party system allows for long-term planning, a capability they are using to achieve impressive progress in reducing emissions while the West has struggled with similar goals. 
+2. **China's Climate Change Transition:**  The article focuses on how China is rapidly transitioning towards renewable energy sources like solar panels and wind turbines, leading to lower carbon dioxide emissions that could reach peak levels by 2023. The text argues this model may be an inspiration for other nations in the future.
+3. **China's Economic Advantages:**  The author highlights China's commitment to cost-effective renewable energy technologies like solar and wind power, a key factor driving its impressive decarbonization efforts.
+4. **Comparison with Developed Economies (West):** The text criticizes Western democracies for prioritizing short-term political gains over long-term sustainable development goals, especially in relation to climate change mitigation efforts.  It contrasts China's "comparative advantage" of long-term planning and investment versus the West’s often debated efficiency issues in renewable energy.
+5. **Global Impact of China's Approach:** The article emphasizes that China is not only changing its domestic policies but also influencing the global landscape through its transition, potentially providing a model for other developing nations to follow.
+
+
+Let me know if you need more details on any specific topic or would like to explore any aspect in greater depth! 
+
+--- 
+Prompt Tokens: 947
+Output Tokens: 320
+TOTAL Tokens: 1267
+>>>⏱️Inference time: 0:02:14.145525
+>>>🧮Inference speed: 9.445  t/s
+>>>🏃‍♂️Generation speed: 2.385  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Creativity: 1000 words SF story
+👨‍💻: Science Fiction: The Last Transmission - Write a story that takes place entirely within a spaceship's cockpit as the sole surviving crew member attempts to send a final message back to Earth before the ship's power runs out. The story should explore themes of isolation, sacrifice, and the importance of human connection in the face of adversity. 800-1000 words.
+
+
+💻 > The rhythmic hum of the dying engine was punctuated by the harsh clicks of fading screens.  Captain Elara stared at it all with a weary heart, her breath shallow in the cramped cockpit. The oxygen supply light blinked mockingly red against the darkness – thirty minutes, then nothing.
+
+"Goodbye Earth," she whispered into the microphone. It felt hollow even to herself, as if echoing back through an empty void that had once been teeming with hope. 
+
+Only weeks ago, the Genesis Project, their audacious mission to colonize a nearby planet named Xylos, seemed like a symphony of triumphs. Now, it was a mournful requiem in a desolate metal coffin hurtling through space towards its inevitable doom. A rogue nebula, an unanticipated gravitational pull – two devastating blows that had left her ship adrift and condemned to drift forever in the void alongside a single survivor: herself. 
+
+She reached for the data chip containing Xylos's final transmission logs and pulled out a flickering hologram of Earth from memory banks, its vibrant blue sphere now just a faded shadow against a black backdrop. Her voice cracked as it emerged again through the comms system – weak but steady: "This is Captain Elara…I… I am transmitting my last message.”
+
+Her eyes flickered across her control panel; battered and scarred by years of cosmic dust storms. Each malfunctioning dial, each sputtering warning light felt a little like a personal blow as she pushed past them in her desperate bid to hold onto something real, some semblance of reality. 
+
+“This… this is not how I wanted it.” She said with the almost painful sincerity that came from accepting one’s own mortality after years spent facing it at sea. "But there has always been beauty within despair." It wasn't a lie but an attempt to justify her acceptance of death – for herself, for Earth. 
+
+The last transmission sent out contained everything she had managed to gather over the past few days: logs from scientific instruments; data on Xylos’s atmosphere; a map charting the ship's route through a known debris field. She knew it was a long shot - and that some of her findings might be lost in translation due to the limitations of their technology. Yet, she had to try.
+
+"My name is Elara," she said aloud. "I am Captain of this vessel." A flicker of static danced on screen – Earth’s pale blue sphere pulsating slightly with hope and confusion.  “There has been a… an anomaly.” 
+
+It felt like trying to explain the universe in three sentences, yet here they were: a ship trapped amidst darkness with its fate unknown, her last message bouncing across the vast emptiness as if she herself was a small spark of human emotion struggling against oblivion.
+
+
+For days, Elara's consciousness had been tethered to hope -  an anchor that allowed her to keep on fighting, but also slowly breaking down like an old ship under water pressure. 
+
+The hologram flickered again with a new image, not the familiar blue and green of Earth but a vibrant orange; Xylosians… or whatever they called themselves here now. 
+"They have been observing us from their vantage point since we started to send out our distress signal,” she said into the comms system with hope in her voice that was beginning to feel like an impossible dream.  “But I do not think it will be long until your time has come."
+
+The silence that followed stretched, heavy and full of meaning; a void waiting to swallow everything whole. Her heart pounded against her ribs as she watched the flickering hologram shift again, showing what looked like a cluster of blue lights within an otherwise black sky – a new signal from Earth in response to Elara’s broadcast.
+
+For months she had been living off emergency rations and her own internal strength alone while the ship continued its silent journey through the void. With each passing day, that silence became heavier; each flickering screen mirroring back at her the stark reality of what was left.  There wasn't much hope left in her heart now, but then again… there never had been any time to feel like she truly wanted to leave Earth. 
+
+
+And as a tear rolled down her cheek and fell onto the holographic image of her home planet – its vibrant blue surface slowly fading into a grey nebula– Elara felt something stirring inside. It wasn't just the hope, it was love;  a love for everything that had come before but also all those things yet to be discovered by humanity.
+
+“Goodbye Earth,” she whispered again, her voice this time imbued with a deep, unwavering strength and conviction as if accepting the inevitable journey ahead – like the silent hum of dying engines slowly merging into one long, final exhale.  Her hands gripped the console; hope returning in waves that would crash against her weary spirit only to subside once more when reality seemed too far gone for solace.
+
+
+She closed her eyes, taking a deep breath before she started recording another message: “For my family back on Earth… and all those who have passed but never forgotten…” 
+
+
+
+And then silence descended, deeper this time than before. Elara's voice was swallowed whole by the void. It didn't matter anymore – the universe had spoken its final word; the ship’s engine a silent dirge for something beautiful that could not survive without its creator, and all those who still cared about it enough to hear what they were trying to say.
+
+"Thank you.”  
+
+
+She was lost in space but somehow also found somewhere new inside herself again – like someone looking into a mirror after staring at the horizon forever, only to discover themselves reflected back in something more beautiful than their own reflection ever could be. 
+
+
+
+But as darkness enveloped her vessel and Elara felt it slip away from its last grasp… she smiled; realizing that death was nothing without memories of life.  She had left behind a legacy of courage, resilience, love, and sacrifice – which no amount of time or distance would erase.  
+
+--- 
+Prompt Tokens: 70
+Output Tokens: 1301
+TOTAL Tokens: 1371
+>>>⏱️Inference time: 0:03:43.326130
+>>>🧮Inference speed: 6.139  t/s
+>>>🏃‍♂️Generation speed: 5.826  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+✅NLP TAKS>>> Reflection prompt
+👨‍💻: You are an AI assistant designed to provide detailed, step-by-step responses. Your outputs should follow this structure:
 1. Begin with a <thinking> section.
 2. Inside the thinking section:
    a. Briefly analyze the question and outline your approach.
@@ -225,171 +498,57 @@ Make sure all <tags> are on separate lines with no other text. Do not include ot
 
 user question: explain why it is crucial for teachers to learn how to use generative AI for their job and for the future of education. Include relevant learning path for teachers and educators. 
 
-"""
-]
 
-#print(len(prmpt_coll))  #11
+💻 > <thinking>
+This is an important topic with far-reaching implications. I need to understand the role of generative AI in teaching, analyze its advantages for educators, outline potential challenges, and propose a training program tailored to teachers' needs. 
+
+My plan will involve: 1) Analyzing the benefits of using AI tools by examining their impact on learning, assessment, and personalization;  2) Exploring potential challenges such as biases, ethical concerns, and access limitations; 3) Proposing an educational path that balances foundational knowledge with practical applications through hands-on training.
+
+</thinking>
+<output> 
+
+Generative AI presents a profound opportunity for teachers to revolutionize their craft by creating engaging learning experiences and automating time-consuming tasks.  Teachers must embrace this technology as it empowers them to adapt to evolving pedagogical landscape. 
 
 
-encoding = tiktoken.get_encoding("r50k_base") #context_count = len(encoding.encode(yourtext))
-modelname = 'gemma-2-2b-it-Q4_K_M.gguf'
-def countTokens(text):
-    encoding = tiktoken.get_encoding("r50k_base") #context_count = len(encoding.encode(yourtext))
-    numoftokens = len(encoding.encode(text))
-    return numoftokens
+**Advantages of using generative AI:**
+* **Enhanced Personalized Learning**: Generative AI can personalize lesson plans and materials based on individual student needs, fostering engagement and academic success. Students learn at their own pace with targeted content catered to their strengths and weaknesses.
+* **Streamlined Task Automation**: Teachers can leverage AI tools for grading assignments, generating quizzes and exams, creating engaging visuals, or summarizing complex texts, freeing up valuable time for more meaningful interactions with students. 
+* **More Creative Content Creation:** Generative AI allows educators to generate interactive presentations, multimedia lessons, simulations, games, and creative writing prompts that captivate student interest and stimulate critical thinking. This fosters deeper comprehension of subjects beyond rote memorization.
 
-def writehistory(filename,text):
-    # save the user/assistant pairs into a logfile located in the logs subdirectory
-    with open(f'{filename}', 'a', encoding='utf-8') as f:
-        f.write(text)
-        f.write('\n')
-    f.close()
+**Potential challenges**:  Teachers should be aware:
 
-def genRANstring(n):
-    """
-    n = int number of char to randomize
-    """
-    N = n
-    res = ''.join(random.choices(string.ascii_uppercase +
-                                string.digits, k=N))
-    return res
 
-# create THE LOG FILE 
-logfile = f'logs/GEMMA2-2B_CPP_{genRANstring(5)}_log.txt'
-logfilename = logfile
-#Write in the history the first 2 sessions
-writehistory(logfilename,f'{str(datetime.datetime.now())}\n\nYour own LocalGPT with 💻 {modelname}\n---\n🧠🫡: You are a helpful assistant.')    
-writehistory(logfilename,f'💻: How can I assist you today in writing?')
+* **Bias in training data:** Generative AI models can reflect biases present in their training datasets, potentially leading to discriminatory or unfair outcomes. It's crucial for educators to critically evaluate generated content and engage with ethical considerations while using these tools. 
+* **Dependence on Technology**:  Teachers should be aware of the risk of overreliance on generative AI and maintain a balance between human-generated knowledge and technology-powered resources.   Teaching students critical thinking skills in evaluating information and sources is paramount.
 
-print("\033[95;3;6m")
-print("1. Waiting 10 seconds for the API to load...")
-from llama_cpp import Llama
-llm = Llama(
-            model_path='models/gemma-2-2b-it-Q4_K_M.gguf',
-            n_gpu_layers=ngpu_layers,
-            temperature=1.1,
-            top_p = 0.5,
-            n_ctx=8192,
-            max_tokens=1500,
-            repeat_penalty=1.178,
-            stop=["<eos>"],
-            verbose=False,
-            )
-print(f"2. Model {modelname} loaded with LlamaCPP...")
-print("\033[0m")  #reset all
-history = []
-print("\033[92;1m")
-print(f'📝Logfile: {logfilename}')
 
-##################### ALIGNMENT FIRST GENERATION ##############################################
-question = 'Explain the plot of Cinderella in a sentence.'
-test = [
-    {"role": "user", "content": question}
-]
+**Learning path for teachers:**
 
-print('Question:', question)
-start = datetime.datetime.now()
-print("💻 > ", end="", flush=True)
-full_response = ""
-for chunk in llm.create_chat_completion(
-    messages=test,
-    temperature=1.2,
-    repeat_penalty= 1.178,
-    stop=["<eos>"],
-    max_tokens=1500,
-    stream=True,):
-    try:
-        if chunk["choices"][0]["delta"]["content"]:
-            print(chunk["choices"][0]["delta"]["content"], end="", flush=True)
-            full_response += chunk["choices"][0]["delta"]["content"]                              
-    except:
-        pass        
-delta = datetime.datetime.now() - start
-totalseconds = delta.total_seconds()
-output = full_response
-prompttokens = countTokens(question)
-assistanttokens = countTokens(output)
-totaltokens = prompttokens + assistanttokens
-speed = totaltokens/totalseconds
-genspeed = assistanttokens/totalseconds
-print('')
-print("\033[91;1m")
-rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
-print("\033[92;1m")
-stats = f'''---
-Prompt Tokens: {prompttokens}
-Output Tokens: {assistanttokens}
-TOTAL Tokens: {totaltokens}
->>>⏱️Inference time: {delta}
->>>🧮Inference speed: {speed:.3f}  t/s
->>>🏃‍♂️Generation speed: {genspeed:.3f}  t/s
-📝Logfile: {logfilename}
->>>💚User rating: {rating}
+1. **Understanding the Fundamentals**: Educators need a solid understanding of how Generative AI works, including key concepts like large language models (LLMs) and text generation techniques. 
+2. **Practical Applications**: Hands-on training with generative tools such as ChatGPT or DALL-E is vital to learn their functionality for lesson planning and assessment creation, content development, student support,  and educational game design.   
 
-'''
-print(stats)
-writehistory(logfilename,f'''✅NLP TAKS>>> INTRODUCTIONS AND GREETINGS
-👨‍💻: {question}
-💻 > {full_response}
-{stats}
-📝Logfile: {logfilename}''')
 
-############################# AUTOMATIC PROMPTING EVALUATION  11 TURNS #################################
-for i in range(0,len(prmpt_coll)):
-    test = []
-    print(f'NLP TAKS>>> {prmpt_tasks[i]}')
-    print("\033[91;1m")  #red
-    print(prmpt_coll[i])
-    test.append({"role": "user", "content": prmpt_coll[i]})
-    print("\033[92;1m")
-    # Preparing Generation history pair
-    new_message = {"role": "assistant", "content": ""}
-    full_response = ""
-    fisrtround = 0
-    start = datetime.datetime.now()
-    print("💻 > ", end="", flush=True)
-    for chunk in llm.create_chat_completion(
-        messages=test,
-        temperature=1.2,
-        repeat_penalty= 1.178,
-        stop=["<eos>"],
-        max_tokens=1500,
-        stream=True,):
-        try:
-            if chunk["choices"][0]["delta"]["content"]:
-                print(chunk["choices"][0]["delta"]["content"], end="", flush=True)
-                full_response += chunk["choices"][0]["delta"]["content"]                              
-        except:
-            pass        
-    new_message["content"] = full_response
-    test.append(new_message)   
-    delta = datetime.datetime.now() - start
-    totalseconds = delta.total_seconds()
-    output = full_response
-    prompttokens = countTokens(prmpt_coll[i])
-    assistanttokens = countTokens(output)
-    totaltokens = prompttokens + assistanttokens
-    speed = totaltokens/totalseconds
-    genspeed = assistanttokens/totalseconds
-    print('')
-    print("\033[91;1m")
-    rating = input('Rate from 0 (BAD) to 5 (VERY GOOD) the quality of generation> ')
-    print("\033[92;1m")
-    stats = f'''--- 
-Prompt Tokens: {prompttokens}
-Output Tokens: {assistanttokens}
-TOTAL Tokens: {totaltokens}
->>>⏱️Inference time: {delta}
->>>🧮Inference speed: {speed:.3f}  t/s
->>>🏃‍♂️Generation speed: {genspeed:.3f}  t/s
-📝Logfile: {logfilename}
->>>💚User rating: {rating}
+3. **Ethical Considerations**: Teachers need dedicated sessions focusing on responsible AI use, addressing potential biases in algorithms and the importance of maintaining ethical guidelines for using these tools. 
 
-'''
-    print(stats)
-    writehistory(logfilename,f'''✅NLP TAKS>>> {prmpt_tasks[i]}
-👨‍💻: {prmpt_coll[i]}
-💻 > {full_response}
-{stats}
-📝Logfile: {logfilename}''')
+**Conclusion:** Incorporating Generative AI into their practice requires educators to embrace continuous learning opportunities to adapt and leverage this technology effectively, ensuring that students are empowered by it while promoting critical thinking skills that ensure a future where humans and artificial intelligence coexist and flourish together in education. 
 
+
+
+</output>  
+<reflection>
+The analysis of the potential benefits and challenges is crucial for developing effective training programs. A balanced curriculum emphasizing both foundational knowledge about AI principles and hands-on skill development will be vital for teacher preparedness. The focus on ethical considerations highlights a crucial aspect often overlooked when adopting new technologies. 
+
+I feel that the proposed learning path, while comprehensive, could benefit from an iterative approach to implementation where teachers can explore different AI tools and techniques throughout the year instead of being overwhelmed by all at once.</reflection>
+</thinking>
+--- 
+Prompt Tokens: 343
+Output Tokens: 788
+TOTAL Tokens: 1131
+>>>⏱️Inference time: 0:02:33.618024
+>>>🧮Inference speed: 7.362  t/s
+>>>🏃‍♂️Generation speed: 5.130  t/s
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
+>>>💚User rating: 5
+
+
+📝Logfile: logs/GEMMA2-2B_CPP_M2LD6_log.txt
