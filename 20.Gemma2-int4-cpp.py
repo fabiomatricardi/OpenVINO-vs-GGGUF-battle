@@ -1,6 +1,7 @@
 # Chat with an intelligent assistant in your terminal  
 # MODEL: https://huggingface.co/bartowski/gemma-2-2b-it-GGUF/tree/main
 # models/gemma-2-2b-it-Q4_K_M.gguf
+# context from the article https://medium.com/enrique-dans/when-china-understands-the-logic-of-renewable-energy-8c45947fcf67
 import sys
 from time import sleep
 import warnings
