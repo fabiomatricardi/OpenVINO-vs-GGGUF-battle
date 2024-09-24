@@ -316,7 +316,7 @@ messages = [
 
 print('Question:', question)
 #Credit to https://github.com/openvino-dev-samples/chatglm3.openvino/blob/main/chat.py
-streamer = TextIteratorStreamer(tokenizer, timeout=60.0, skip_prompt=True, skip_special_tokens=True)
+streamer = TextIteratorStreamer(tokenizer, timeout=180.0, skip_prompt=True, skip_special_tokens=True)
 model_inputs = tokenizer.apply_chat_template(messages,
                                                      add_generation_prompt=True,
                                                      tokenize=True,
@@ -363,7 +363,7 @@ for i in range(0,len(prmpt_coll)):
     # Preparing Generation history pair
     new_message = {"role": "assistant", "content": ""}
     print("\033[92;1m")
-    streamer = TextIteratorStreamer(tokenizer, timeout=60.0, skip_prompt=True, skip_special_tokens=True)
+    streamer = TextIteratorStreamer(tokenizer, timeout=180.0, skip_prompt=True, skip_special_tokens=True)
     model_inputs = tokenizer.apply_chat_template(test,
                                                 add_generation_prompt=True,
                                                 tokenize=True,
