@@ -1,4 +1,6 @@
+# context from the article https://medium.com/enrique-dans/when-china-understands-the-logic-of-renewable-energy-8c45947fcf67
 #from transformers import AutoModelForCausalLM
+
 from optimum.intel.openvino import OVModelForCausalLM
 from transformers import AutoTokenizer, AutoConfig
 from threading import Thread
