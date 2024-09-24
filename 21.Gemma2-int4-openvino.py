@@ -110,7 +110,7 @@ It could soon be the case that the so-called developing countries will be showin
  """,
 """Reply to the question only using the provided context. If the answer is not contained in the text say "unanswerable".
 
-question: what Chine achieved with it's long-term planning?
+question: what China achieved with it's long-term planning?
 
 [context]One of the things everybody in the West knows about China is that it is not a democracy, and is instead a regime run with an iron fist by a single entity, the Chinese Communist Party, whose leadership rarely acts transparently, running the country without the need for primary elections, alternative candidacies, etc.
 In general, those of us who live in democracies, with relatively transparent electoral processes, tend to consider the Chinese system undesirable, little more than a dictatorship where people have no say in who governs them.
